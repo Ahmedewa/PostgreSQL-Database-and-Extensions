@@ -1,0 +1,25 @@
+             **SUPABASE-ERROR HANDLING**
+
+
+### **Supabase**
+
+- **Error Handling**: Monitor database events using Supabase functions or triggers.
+- ** Trigger**:
+  ```sql
+  CREATE OR REPLACE FUNCTION handle_error()
+  RETURNS TRIGGER AS $$
+  BEGIN
+      INSERT INTO error_logs (error_message, created_at)
+      VALUES (NEW.error, NOW());
+      RETURN NEW;
+  END;
+  $$ LANGUAGE plpgsql;
+
+  CREATE TRIGGER log_error
+  AFTER INSERT OR UPDATE ON your_tableocus. Alternatively, use esc then tab to move to the next interactive element on the page.
+  FOR EACH ROW
+  EXECUTE FUNCTION handle_error();
+  ```
+
+---
+
