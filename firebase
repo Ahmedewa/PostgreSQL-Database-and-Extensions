@@ -1,0 +1,18 @@
+       FIREBASE
+
+### **Firebase**
+
+1. **Enable Firebase Crashlytics**:
+   - In the Firebase Console, enable Crashlytics for your project.
+
+2. **Integrate Crashlytics in Frontend**:
+   ```javascript
+   import { getCrashlytics } from "firebase/crashlytics";
+
+   const crashlytics = getCrashlytics();
+   crashlytics.log("App started");
+   ```
+
+---
+
+
