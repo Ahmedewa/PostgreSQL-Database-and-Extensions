@@ -1,0 +1,22 @@
+       VIBE SHEILD-BACKEND
+
+### ** Vibe Shield (Node.js/Express.js Backend)**
+
+1. **Install Sentry for Node.js**:
+   ```bash
+   npm install @sentry/node
+   ```
+
+2. **Initialize Sentry in Express.js**:
+   ```javascript
+   const Sentry = require("@sentry/node");
+
+   Sentry.init({
+       dsn: "https://your-dsn.sentry.io/12345",
+   });
+
+   app.use(Sentry.Handlers.errorHandler());
+   ```
+
+---
+
