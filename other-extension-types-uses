@@ -1,0 +1,107 @@
+                   ## ** OTHER-EXTENSION-TYPES**
+
+### ** `pg_partman`**
+- **Purpose**: Simplify table partitioning.
+- **Use Case**: Automatically manage time-based or ID-based partitions.
+
+**Code**:
+```sql
+CREATE EXTENSION pg_partman;
+SELECT partman.create_parent('public.events', 'event_time', 'time');
+```
+
+---
+
+### ** `PostGIS`**
+- **Purpose**: Add geospatial data support to PostgreSQL.
+- **Use Case**: Store and query geographic data.
+
+**Code**:
+```sql
+CREATE EXTENSION postgis;
+
+SELECT ST_AsText(ST_GeomFromText('POINT(1 2)'));
+```
+
+---
+
+### ** `pg_cron`**
+- **Purpose**: Schedule jobs directly within PostgreSQL.
+- **Use Case**: Automate recurring tasks.
+
+**Example**:
+```sql
+CREATE EXTENSION pg_cron;
+
+SELECT cron.schedule('daily_backup', '0 3 * * *', 'CALL perform_backup()');
+```
+
+---
+
+### ** `pgAudit`**
+- **Purpose**: Log all database activity for auditing purposes.
+- **Use Case**: Track changes for compliance.
+
+**Code**:
+```sql
+CREATE EXTENSION pgaudit;
+
+ALTER SYSTEM SET pgaudit.log = 'all';
+SELECT pg_reload_conf();
+```
+
+---
+
+### ** `hstore`**
+- **Purpose**: Store key-value pairs in a single column.
+- **Use Case**: Simplify semi-structured data storage.
+
+**Code**:
+```sql
+CREATE EXTENSION hstore;
+
+INSERT INTO mytable (data) VALUES ('"key"=>"value"');
+```
+
+---
+
+## **4. Best Practices Summary**
+
+### **General Practices**
+1. **Monitor Performance**:
+   - Use `pg_stat_statements` for query profiling.
+   - Analyze slow queries with `EXPLAIN ANALYZE`.
+2. **Secure Connections**:
+   - Enable SSL for all database connections.
+   - Restrict access using `pg_hba.conf`.
+3. **Test Extensions**:
+   - Write tests with `pgTAP` to ensure correctness.
+
+---
+
+### **Extension-Specific Practices**
+1. **Citus**:
+   - Choose shard keys wisely to minimize cross-node queries.
+   - Monitor distributed queries with `citus_stat_activity`.
+
+2. **PgBouncer**:
+   - Tune `default_pool_size` to match application concurrency.
+   - Monitor pool usage periodically.
+
+3. **PL/Proxy**:
+   - Use for read-heavy workloads with minimal latency.
+
+4. **Alembic**:
+   - Use incremental migrations to avoid downtime.
+   - Always back up the database before applying migrations.
+
+---
+## **5. Resources**
+1. **PostgreSQL Documentation**: [Official Docs](https://www.postgresql.org/docs/)
+2. **Citus Documentation**: [Citus Docs](https://docs.citusdata.com/)
+3. **PgBouncer Documentation**: [PgBouncer Docs](https://www.pgbouncer.org/)
+4. **pgTAP**: [pgTAP Docs](https://pgtap.org/)
+5. **Alembic**: [Alembic Docs](https://alembic.sqlalchemy.org/en/latest/)
+
+---
+
