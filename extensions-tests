@@ -1,0 +1,37 @@
+                       EXTENSIONS-TESTS
+
+### ** Test Extensions**
+
+#### **Why Test Extensions?**
+- Ensure correctness of custom functions or logic.
+- Validate performance and behavior.
+
+#### **How to Use `pgTAP`**
+
+1. **Install `pgTAP`**
+   - Install the extension:
+     ```bash
+     sudo apt-get install postgresql-15-pgtap
+     ```
+
+2. **Write Tests**
+   - Example test for a custom function:
+     ```sql
+     CREATE OR REPLACE FUNCTION add_numbers(a INT, b INT) RETURNS INT AS $$
+     BEGIN
+         RETURN a + b;
+     END;
+     $$ LANGUAGE plpgsql;
+
+     SELECT plan(1);
+     SELECT is(add_numbers(2, 3), 5, 'add_numbers() adds correctly');
+     SELECT finish();
+     ```
+
+3. **Run Tests**
+   ```bash
+   pg_prove -d mydb test.sql
+   ```
+
+---
+
