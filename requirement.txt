@@ -1,0 +1,52 @@
+              REQUIREMENTS/DEPENDENCY FILE       
+
+## ** How to Create `requirements.txt` or Dependency File**
+
+### **Steps to Create `requirements.txt` for Python Projects**
+
+1. **Install Dependencies**:
+   ```bash
+   pip install flask requests psycopg2
+   ```
+
+2. **Generate `requirements.txt`**:
+   ```bash
+   pip freeze > requirements.txt
+   ```
+
+3. **Example `requirements.txt`**:
+   ```txt
+   Flask==2.0.3
+   requests==2.28.1
+   psycopg2==2.9.3
+   ```
+
+---
+
+### **Steps to Create `package.json` for Node.js Projects**
+
+1. **Initialize a Node.js Project**:
+   ```bash
+   npm init -y
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   npm install express mongoose
+   ```
+
+3. **`package.json`**:
+   ```json
+   {
+       "name": "my-app",
+       "version": "1.0.0",
+       "dependencies": {
+           "express": "^4.17.3",
+           "mongoose": "^6.3.1"
+       }
+   }
+   ```
+
+---
+
+#
