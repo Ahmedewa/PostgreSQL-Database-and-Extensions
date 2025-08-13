@@ -1,0 +1,74 @@
+                              CODE-COVERAGE-AUTOMATION
+
+## ** Automate Code Coverage**
+
+### **Why Automate Code Coverage?**
+- Identify untested parts of your codebase.
+- Ensure critical paths are tested.
+
+### **How to Automate Code Coverage**
+
+#### **Step 1: Install Coverage Tools**
+1. **Python**: Use `coverage.py`:
+   ```bash
+   pip install coverage
+   ```
+
+2. **Node.js**: Use `nyc`:
+   ```bash
+   npm install nyc --save-dev
+   ```
+
+---
+
+#### **Step 2: Run Coverage Reports**
+1. **Python**:
+   ```bash
+   coverage run -m pytest
+   coverage report
+   ```
+
+2. **Node.js**:
+   ```bash
+   nyc mocha
+   ```
+
+---
+
+#### **Step 3: Automate in CI/CD**
+1. **GitHub Actions Workflow**:
+   ```yaml
+   name: Code Coverage
+
+   on:
+     push:
+       branches:
+         - main
+
+   jobs:
+     coverage:
+       runs-on: ubuntu-latest
+       steps:
+         - name: Checkout Code
+           uses: actions/checkout@v3
+
+         - name: Install Dependencies
+           run: pip install -r requirements.txt
+
+         - name: Run Tests with Coverage
+           run: coverage run -m pytest
+         - name: Upload Coverage Report
+           run: coverage report
+   ```
+
+---
+
+## **5. Resources**
+
+1. **Sentry**: [Sentry Documentation](https://docs.sentry.io/)  
+2. **Supabase**: [Supabase Docs](https://supabase.com/docs)  
+3. **Firebase**: [Firebase Crashlytics Docs](https://firebase.google.com/docs/crashlytics)  
+4. **Coverage**: [Coverage.py](https://coverage.readthedocs.io/)  
+5. **Nyc**: [Istanbul NYC](https://www.npmjs.com/package/nyc)  
+6. **Idempotency**: [Idempotency in APIs](https://stripe.com/docs/api/idempotent_requests)
+
