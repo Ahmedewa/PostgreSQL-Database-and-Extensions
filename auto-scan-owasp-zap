@@ -1,0 +1,54 @@
+                                    AUTOMATE-VULNERABILITY-SCAN
+
+#### **Purpose**
+- Automated penetration testing tool for identifying web application vulnerabilities.
+
+#### **How to Automate Testing with OWASP ZAP**
+1. **Install OWASP ZAP**
+   ```bash
+   sudo apt install zaproxy
+   ```
+
+2. **Run OWASP ZAP in Headless Mode**
+   - Use the CLI for automated scans:
+     ```bash
+     zap-cli quick-scan --self-contained --start --spider --port 8080 https://your-app-url.com
+     ```
+
+3. **Integrate with CI/CD**
+   - GitHub Actions workflow:
+     ```yaml
+     name: OWASP ZAP Scan
+
+     on:
+       push:
+         branches:
+           - main
+
+     jobs:
+       zap-scan:
+         runs-on: ubuntu-latest
+         steps:
+           - name: Start OWASP ZAP
+             run: zap-cli start --port 8080
+
+           - name: Run Security Scan
+             run: zap-cli quick-scan https://your-app-url.com
+     ```
+
+---
+
+### **Burp Suite**
+
+#### **Purpose**
+- Manual and automated security testing tool for web applications.
+
+#### **How to Automate Testing with Burp Suite**
+1. **Install Burp Suite**
+   - Download the community edition: [Burp Suite Community Edition](https://portswigger.net/burp/communitydownload).
+
+2. **Use Burp Suite for Automated Scans**
+   - Set up automated scans for SQL injection, XSS, etc.
+
+---
+
