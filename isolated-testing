@@ -1,0 +1,42 @@
+                                 **TESTING-APP-IN-ISOLATION**
+
+
+### **1.1 Test in Isolation**
+
+#### **Why?**
+- Prevent conflicts with production data.
+- Ensure tests run on a consistent, reproducible environment.
+
+#### **How?**
+
+1. **Create a Dedicated Test Database**
+   - Set up a separate PostgreSQL instance or database for testing:
+     ```bash
+     psql -U postgres -c "CREATE DATABASE testdb;"
+     ```
+
+2. **Use Environment Variables**
+   - Set `TEST_DATABASE_URL` in your environment for testing:
+     ```bash
+     export TEST_DATABASE_URL="postgresql://testuser:testpassword@localhost/testdb"
+     ```
+
+3. **Reset the Database Before Tests**
+   - Use tools like `pytest` fixtures to clean up the database:
+     ```python
+     import pytest
+     import psycopg2
+
+     @pytest.fixture(scope="function")
+     def test_db():
+         conn = psycopg2.connect("dbname=testdb user=testuser")
+         cur = conn.cursor()
+         cur.execute("TRUNCATE TABLE users, orders RESTART IDENTITY;")
+         conn.commit()
+         yield cur
+         cur.close()
+         conn.close()
+     ```
+
+---
+
