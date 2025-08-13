@@ -1,0 +1,65 @@
+                           **MONITOR-CODE-COVERAGE**
+
+
+ ** Monitor Test Coverage**
+
+#### **Why?**
+- Identify untested parts of your codebase.
+- Ensure coverage for critical database logic.
+
+#### **How?**
+
+1. **Install Coverage Tools**
+   - Install `pytest-cov`:
+     ```bash
+     pip install pytest-cov
+     ```
+
+2. **Run Coverage Tests**
+   - Generate a coverage report:
+     ```bash
+     pytest --cov=app tests/
+     ```
+
+3. **View Coverage Report**
+   - Open the report in HTML format:
+     ```bash
+     pytest --cov=app --cov-report=html
+     ```
+
+---
+
+### **1.5 Validate Edge Cases**
+
+#### **Why?**
+- Ensure app handles null values, empty datasets, and large data loads.
+- Avoid unexpected errors in production.
+
+#### **How?**
+
+1. **Write Edge Case Tests**
+   -  Test for null values.
+     ```python
+     def test_null_values():
+         cur.execute("INSERT INTO users (name, email) VALUES (NULL, NULL);")
+         cur.execute("SELECT * FROM users WHERE name IS NULL;")
+         result = cur.fetchone()
+         assert result is not None
+     ```
+
+2. **Test Large Data Loads**
+   - Simulate bulk inserts:
+     ```python
+     def test_bulk_inserts():
+         for _ in range(10000):
+             cur.execute("INSERT INTO large_table (data) VALUES (%s)", ("test_data",))
+         cur.execute("SELECT COUNT(*) FROM large_table;")
+         result = cur.fetchone()
+         assert result[0] == 10000
+     ```
+
+---
+
+## **2. Security Testing with Tools**
+
+### **2.1 OWASP ZAP**
