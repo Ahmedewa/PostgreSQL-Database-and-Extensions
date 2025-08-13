@@ -1,0 +1,43 @@
+                    PERFORMANCE MONITOR[ENABLE'pg_stat_statements']
+
+### **1.1 Monitor Performance**
+
+#### **Why Monitor Performance?**
+- Identify slow queries.
+- Optimize resource usage.
+- Resolve bottlenecks affecting scalability and response time.
+
+#### **How to Monitor Performance**
+
+1. **Enable `pg_stat_statements`**
+   - The `pg_stat_statements` extension tracks query execution statistics.
+
+   **Steps to Enable:**
+   ```sql
+   CREATE EXTENSION pg_stat_statements;
+   ALTER SYSTEM SET shared_preload_libraries = 'pg_stat_statements';
+   SELECT pg_reload_conf();
+   ```
+
+2. **Query Slow Statements**
+   - Use `pg_stat_statements` to identify slow queries:
+     ```sql
+     SELECT
+         query,
+         total_time,
+         calls,
+         mean_time,
+         rows
+     FROM pg_stat_statements
+     ORDER BY total_time DESC
+     LIMIT 10;
+     ```
+
+3. **Analyze Query Plans**
+   - Use `EXPLAIN` or `EXPLAIN ANALYZE` to debug slow queries:
+     ```sql
+     EXPLAIN ANALYZE
+     SELECT * FROM large_table WHERE column = 'value';
+     ```
+
+---
