@@ -1,0 +1,22 @@
+                                     **PGBOUNCER **
+
+
+### ** PgBouncer**
+
+#### **Tune Pool Size**
+1. **Set `pool_size` Based on Concurrency**
+   - Update `/etc/pgbouncer/pgbouncer.ini`:
+     ```ini
+     [pgbouncer]
+     default_pool_size = 20
+     max_client_conn = 100
+     ```
+
+2. **Monitor Connection Usage**
+   - Use the `SHOW POOLS` command:
+     ```sql
+     SHOW POOLS;
+     ```
+
+---
+
