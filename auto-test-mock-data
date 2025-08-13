@@ -1,0 +1,97 @@
+                   AUTOMATATING-TESTS-USING-MOCK-DATA
+
+### ** Automate Tests**
+
+#### **Why?**
+- Ensure consistent testing across environments.
+- Integrate with CI/CD pipelines for continuous testing.
+
+#### **How?**
+
+1. **Set Up a CI/CD Pipeline**
+   - Example GitHub Actions workflow:
+     ```yaml
+     name: PostgreSQL Test Pipeline
+
+     on:
+       push:
+         branches:
+           - main
+
+     jobs:
+       test:
+         runs-on: ubuntu-latest
+         services:
+           postgres:
+             image: postgres:15
+             ports:
+               - 5432:5432
+             env:
+               POSTGRES_USER: testuser
+               POSTGRES_PASSWORD: testpassword
+               POSTGRES_DB: testdb
+
+         steps:
+           - name: Checkout Code
+             uses: actions/checkout@v3
+
+           - name: Install Dependencies
+             run: pip install -r requirements.txt
+
+           - name: Run Tests
+             run: pytest --cov=app tests/
+     ```
+
+2. **Run Tests Locally**
+   - Use `pytest` to execute tests:
+     ```bash
+     pytest --cov=app tests/
+     ```
+
+---
+
+### **1.3 Use Mock Data**
+
+#### **Why?**
+- Test with realistic but non-sensitive data.
+- Validate application behavior with edge cases.
+
+#### **How?**
+
+1. **Generate Mock Data**
+   - Use Python libraries like `Faker`:
+     ```python
+     from faker import Faker
+     fake = Faker()
+
+     def generate_mock_data():
+         return {
+             "name": fake.name(),
+             "email": fake.email(),
+             "address": fake.address(),
+         }
+     ```
+
+2. **Seed the Test Database**
+   - Script to populate mock data:
+     ```python
+     import psycopg2
+     from faker import Faker
+
+     fake = Faker()
+     conn = psycopg2.connect("dbname=testdb user=testuser")
+     cur = conn.cursor()
+
+     for _ in range(100):
+         cur.execute(
+             "INSERT INTO users (name, email, address) VALUES (%s, %s, %s)",
+             (fake.name(), fake.email(), fake.address()),
+         )
+     conn.commit()
+     cur.close()
+     conn.close()
+     ```
+
+---
+
+###
