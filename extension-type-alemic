@@ -1,0 +1,23 @@
+                            **EXTENSION-TYPE-ALEMIC**
+
+### ** Alembic**
+
+#### **Use Incremental Migrations**
+1. **Generate a Migration**
+   ```bash
+   alembic revision --autogenerate -m "Add new column to table"
+   ```
+
+2. **Apply the Migration**
+   ```bash
+   alembic upgrade head
+   ```
+
+---
+
+#### **Backup Before Applying**
+- Always back up your database:
+  ```bash
+  pg_dump -U myuser -Fc mydb > mydb_backup.dump
+  ```
+
