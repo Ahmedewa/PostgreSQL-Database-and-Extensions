@@ -1,0 +1,28 @@
+                                  *CITUS**
+
+### ** Citus**
+
+#### **Shard by Access Patterns**
+- Choose a shard key that minimizes cross-node queries.
+
+**Shard by User ID**
+```sql
+CREATE TABLE events (
+    event_id BIGINT,
+    user_id BIGINT,
+    properties JSONB
+);
+
+SELECT create_distributed_table('events', 'user_id');
+```
+
+---
+
+#### **Monitor Worker Nodes**
+- Use `citus_stat_activity` to monitor distributed queries:
+  ```sql
+  SELECT * FROM citus_stat_activity;
+  ```
+
+---
+
