@@ -1,0 +1,39 @@
+                                      **SNYK-AUTO-SCAN[VULNERABILITY-DETECTION-CODEBASE]**
+
+### ** Snyk**
+
+#### **Purpose**
+- Automates vulnerability detection in your codebase and dependencies.
+
+#### **How to Integrate Snyk**
+1. **Install Snyk CLI**
+   ```bash
+   npm install -g snyk
+   ```
+
+2. **Test Your Codebase**
+   - Run a vulnerability scan:
+     ```bash
+     snyk test
+     ```
+
+3. **Automate in CI/CD**
+   - Add Snyk to your pipeline:
+     ```yaml
+     name: Snyk Security Scan
+
+     on:
+       push:
+         branches:
+           - main
+
+     jobs:
+       snyk-scan:
+         runs-on: ubuntu-latest
+         steps:
+           - name: Checkout Code
+             uses: actions/checkout@v3
+
+           - name: Run Snyk
+             run: snyk test
+  
