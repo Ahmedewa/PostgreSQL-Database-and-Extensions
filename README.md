@@ -129,7 +129,7 @@ The App is provided on an "AS IS" and "AS AVAILABLE" basis. To the fullest exten
 ## **12. Limitation of Liability**
 
 To the maximum extent permitted by law:  
-1. [Ewa Hospital Ltd.] shall not be liable for indirect, incidental, special, or consequential damages arising out of your use of the App.  
+1. [Techiehealthinnovasionsewa] shall not be liable for indirect, incidental, special, or consequential damages arising out of your use of the App.  
 2. Our total liability for all claims related to the App will not exceed the amount you paid (if any) for accessing the App.  
 
 ---
