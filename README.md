@@ -7553,7 +7553,7 @@ Check logs to debug any issues:
 heroku logs --tail
 ```
 
-#### **Example of Deploying with GitHub Actions**
+#### **Deploying with GitHub Actions**
 Use the following GitHub Actions workflow to automate Heroku deployment:
 ```yaml
 name: Deploy to Heroku
@@ -7589,7 +7589,7 @@ jobs:
 ### **Approach 1: Using `environment` Block**
 You can define environment variables directly in the `environment` block.
 
-#### **Example Jenkinsfile**
+#### ** Jenkinsfile**
 ```groovy
 pipeline {
     agent any
@@ -7891,7 +7891,7 @@ NODE_ENV=production node app.js
 ### **Approach 2: Use Environment Variables in CI/CD**
 For CI/CD pipelines (e.g., GitHub Actions, Jenkins, or Heroku), set environment variables directly in the pipeline configuration.
 
-#### **GitHub Actions Example**
+#### **GitHub Actions **
 ```yaml
 jobs:
   build-and-deploy:
